@@ -75,6 +75,7 @@
   .volume-slider span,
   .keys-checkbox span {
     margin-right: 10px;
+    margin-bottom: 8px;
   }
 
   .keys-checkbox input {
@@ -103,6 +104,7 @@
   .piano-keys {
     display: flex;
     margin-top: 40px;
+    margin-left: -10px;
   }
   .piano-keys .key {
     cursor: pointer;
