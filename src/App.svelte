@@ -18,5 +18,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #e3f2fd;
   }
 </style>
