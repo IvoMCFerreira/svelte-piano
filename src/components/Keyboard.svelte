@@ -1,13 +1,15 @@
 <div class="wrapper">
   <header>
-    <h2>Virtual Piano</h2>
-    <div class="column volume-slider">
-      <span>Volume</span>
-      <input type="range" min="0" max="100" value="100" class="volume-slider" />
-    </div>
-    <div class="column keys-checkbox">
-      <span>Show Keys</span>
-      <input type="checkbox" checked />
+    <div class="top-elements">
+      <h2>Virtual Piano</h2>
+      <div class="volume-slider">
+        <span>Volume</span>
+        <input type="range" min="0" max="100" value="50" />
+      </div>
+      <div class="keys-checkbox">
+        <span>Show Keys</span>
+        <input type="checkbox" checked />
+      </div>
     </div>
     <ul class="piano-keys">
       <li class="key white"><span>a</span></li>
@@ -35,20 +37,26 @@
   .wrapper {
     width: 780px;
     border-radius: 20px;
-    padding: 35px 50px;
+    padding: 35px 40px;
     background: #141414;
   }
   .wrapper header {
     color: #b2b2b2;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .top-elements {
+    display: flex;
     justify-content: space-between;
   }
   header h2 {
     font-size: 1.6rem;
   }
 
-  header .column {
+  .volume-slider,
+  .keys-checkbox {
     display: flex;
     align-items: center;
   }
@@ -62,6 +70,11 @@
   .volume-slider input {
     outline: none;
     accent-color: #fff;
+  }
+
+  .volume-slider span,
+  .keys-checkbox span {
+    margin-right: 10px;
   }
 
   .keys-checkbox input {
@@ -87,11 +100,6 @@
     transition: all 0.3s ease;
   }
 
-  .key-checkbox input:checked::before {
-    left: 35px;
-    background: #fff;
-  }
-
   .piano-keys {
     display: flex;
     margin-top: 40px;
@@ -112,6 +120,11 @@
     border: 1px solid #000;
     background: linear-gradient(#fff 96%, #eee 4%);
   }
+
+  .piano-keys .white:active {
+    box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  }
   .piano-keys .black {
     width: 44px;
     height: 140px;
@@ -121,9 +134,9 @@
     background: linear-gradient(#333, #000);
   }
 
-  .piano-keys .white:active {
-    box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  .piano-keys .black:active {
+    box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, #000, #434343);
   }
 
   .piano-keys span {
