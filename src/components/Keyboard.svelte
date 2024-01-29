@@ -1,4 +1,30 @@
 <script>
+  const pianoKeys = [];
+  let keys = [
+    { key: "a", color: "white", bindIndex: 0 },
+    { key: "w", color: "black", bindIndex: 1 },
+    { key: "s", color: "white", bindIndex: 2 },
+    { key: "e", color: "black", bindIndex: 3 },
+    { key: "d", color: "white", bindIndex: 4 },
+    { key: "f", color: "white", bindIndex: 5 },
+    { key: "t", color: "black", bindIndex: 6 },
+    { key: "g", color: "white", bindIndex: 7 },
+    { key: "y", color: "black", bindIndex: 8 },
+    { key: "h", color: "white", bindIndex: 9 },
+    { key: "u", color: "black", bindIndex: 10 },
+    { key: "j", color: "white", bindIndex: 11 },
+    { key: "k", color: "white", bindIndex: 12 },
+    { key: "o", color: "black", bindIndex: 13 },
+    { key: "l", color: "white", bindIndex: 14 },
+    { key: "p", color: "black", bindIndex: 15 },
+    { key: "ç", color: "white", bindIndex: 16 },
+  ];
+  let audio = new Audio("/tunes/a.wav");
+
+  const playTune = (key) => {
+    audio.src = `/tunes/${key}.wav`;
+    audio.play();
+  };
 </script>
 
 <div class="wrapper">
@@ -15,23 +41,17 @@
       </div>
     </div>
     <ul class="piano-keys">
-      <li class="key white"><span>a</span></li>
-      <li class="key black"><span>w</span></li>
-      <li class="key white"><span>s</span></li>
-      <li class="key black"><span>e</span></li>
-      <li class="key white"><span>d</span></li>
-      <li class="key white"><span>f</span></li>
-      <li class="key black"><span>t</span></li>
-      <li class="key white"><span>g</span></li>
-      <li class="key black"><span>y</span></li>
-      <li class="key white"><span>h</span></li>
-      <li class="key black"><span>u</span></li>
-      <li class="key white"><span>j</span></li>
-      <li class="key white"><span>k</span></li>
-      <li class="key black"><span>o</span></li>
-      <li class="key white"><span>l</span></li>
-      <li class="key black"><span>p</span></li>
-      <li class="key white"><span>ç</span></li>
+      {#each keys as { key, color, bindIndex } (key)}
+        <li
+          class="key {color}"
+          data-key={key}
+          bind:this={pianoKeys[bindIndex]}
+          on:click={() => playTune(key)}
+          on:keydown={() => {}}
+        >
+          <span>{key}</span>
+        </li>
+      {/each}
     </ul>
   </header>
 </div>
