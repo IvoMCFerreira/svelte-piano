@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <div class="wrapper">
   <header>
     <div class="top-elements">
@@ -86,6 +89,7 @@
     cursor: pointer;
     border-radius: 30px;
     background: #4b4b4b;
+    transition: background 0.3s;
   }
 
   .keys-checkbox input::before {
@@ -99,6 +103,16 @@
     background: #8c8c8c;
     transform: translateY(-50%);
     transition: all 0.3s ease;
+  }
+
+  .keys-checkbox input:checked {
+    background: #4b4b4b;
+  }
+
+  .keys-checkbox input:checked::before {
+    left: calc(100% - 5px);
+    transform: translate(-100%, -50%);
+    background: #ffffff;
   }
 
   .piano-keys {
