@@ -25,14 +25,14 @@
     { key: "ç", color: "white", bindIndex: 16 },
   ];
 
-  let audio = new Audio("/tunes/a.wav");
   let volume = 0.5;
   let showKeys = true;
 
   const playTune = (key) => {
-    audio.src = `/tunes/${key}.wav`;
+    const audio = new Audio(`/tunes/${key}.wav`); // create a new Audio object
     audio.volume = volume;
     audio.play();
+    return audio; // return the Audio object
   };
 
   const handleKeyDown = (event) => {
