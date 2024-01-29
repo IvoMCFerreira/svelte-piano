@@ -21,10 +21,13 @@
     { key: "p", color: "black", bindIndex: 15 },
     { key: "ç", color: "white", bindIndex: 16 },
   ];
+
   let audio = new Audio("/tunes/a.wav");
+  let volume = 0.5;
 
   const playTune = (key) => {
     audio.src = `/tunes/${key}.wav`;
+    audio.volume = volume;
     audio.play();
   };
 
@@ -57,7 +60,7 @@
       <h2>Virtual Piano</h2>
       <div class="volume-slider">
         <span>Volume</span>
-        <input type="range" min="0" max="100" value="50" />
+        <input type="range" min="0" max="1" step="0.01" bind:value={volume} />
       </div>
       <div class="keys-checkbox">
         <span>Show Keys</span>
