@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import VolumeSlider from "../shared/VolumeSlider.svelte";
   import CheckboxSlider from "../shared/CheckBoxSlider.svelte";
+  import { fade } from "svelte/transition";
 
   const pianoKeys = [];
   let keys = [
@@ -26,6 +27,7 @@
 
   let audio = new Audio("/tunes/a.wav");
   let volume = 0.5;
+  let showKeys = true;
 
   const playTune = (key) => {
     audio.src = `/tunes/${key}.wav`;
@@ -61,7 +63,7 @@
     <div class="top-elements">
       <h2>Virtual Piano</h2>
       <VolumeSlider bind:volume />
-      <CheckboxSlider checked />
+      <CheckboxSlider bind:checked={showKeys} />
     </div>
     <ul class="piano-keys">
       {#each keys as { key, color, bindIndex } (key)}
@@ -72,7 +74,13 @@
           on:click={() => playTune(key)}
           on:keydown={() => {}}
         >
-          <span>{key}</span>
+          {#if showKeys}
+            <span
+              class="key-label"
+              in:fade={{ duration: 500 }}
+              out:fade={{ duration: 500 }}>{key}</span
+            >
+          {/if}
         </li>
       {/each}
     </ul>
@@ -97,6 +105,11 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .key-label {
+    transition: opacity 0.5s ease-in-out;
+  }
+
   header h2 {
     font-size: 1.6rem;
   }
