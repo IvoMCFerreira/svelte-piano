@@ -1,4 +1,6 @@
 <script>
+  import { onMount, onDestroy } from "svelte";
+
   const pianoKeys = [];
   let keys = [
     { key: "a", color: "white", bindIndex: 0 },
@@ -25,6 +27,23 @@
     audio.src = `/tunes/${key}.wav`;
     audio.play();
   };
+
+  const handleKeyDown = (event) => {
+    const key = event.key.toLowerCase();
+    if (keys.find((k) => k.key === key)) {
+      playTune(key);
+    }
+  };
+
+  // Add the event listener when the component mounts
+  onMount(() => {
+    window.addEventListener("keydown", handleKeyDown);
+  });
+
+  // Remove the event listener when the component unmounts
+  onDestroy(() => {
+    window.removeEventListener("keydown", handleKeyDown);
+  });
 </script>
 
 <div class="wrapper">
