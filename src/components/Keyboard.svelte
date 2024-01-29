@@ -1,5 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
+  import VolumeSlider from "../shared/VolumeSlider.svelte";
+  import CheckboxSlider from "../shared/CheckBoxSlider.svelte";
 
   const pianoKeys = [];
   let keys = [
@@ -58,14 +60,8 @@
   <header>
     <div class="top-elements">
       <h2>Virtual Piano</h2>
-      <div class="volume-slider">
-        <span>Volume</span>
-        <input type="range" min="0" max="1" step="0.01" bind:value={volume} />
-      </div>
-      <div class="keys-checkbox">
-        <span>Show Keys</span>
-        <input type="checkbox" checked />
-      </div>
+      <VolumeSlider {volume} />
+      <CheckboxSlider checked />
     </div>
     <ul class="piano-keys">
       {#each keys as { key, color, bindIndex } (key)}
@@ -105,7 +101,6 @@
     font-size: 1.6rem;
   }
 
-  .volume-slider,
   .keys-checkbox {
     display: flex;
     align-items: center;
@@ -115,51 +110,6 @@
     font-weight: 500;
     margin-right: 15px;
     font-size: 1.19rem;
-  }
-
-  .volume-slider input {
-    outline: none;
-    accent-color: #fff;
-  }
-
-  .volume-slider span,
-  .keys-checkbox span {
-    margin-right: 10px;
-    margin-bottom: 8px;
-  }
-
-  .keys-checkbox input {
-    width: 60px;
-    height: 30px;
-    appearance: none;
-    position: relative;
-    cursor: pointer;
-    border-radius: 30px;
-    background: #4b4b4b;
-    transition: background 0.3s;
-  }
-
-  .keys-checkbox input::before {
-    content: "";
-    height: 20px;
-    width: 20px;
-    top: 50%;
-    left: 5px;
-    border-radius: inherit;
-    position: absolute;
-    background: #8c8c8c;
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
-  }
-
-  .keys-checkbox input:checked {
-    background: #4b4b4b;
-  }
-
-  .keys-checkbox input:checked::before {
-    left: calc(100% - 5px);
-    transform: translate(-100%, -50%);
-    background: #ffffff;
   }
 
   .piano-keys {
