@@ -38,23 +38,34 @@
   const handleKeyDown = (event) => {
     const key = event.key.toLowerCase();
     const keyObject = keys.find((k) => k.key === key);
-    if (keyObject) {
-      playTune(key);
+    if (keyObject && !keyObject.audio) {
+      // check if the key is not already pressed
+      keyObject.audio = playTune(key); // store the Audio object in the key object
       pianoKeys[keyObject.bindIndex].classList.add(`${keyObject.color}-active`);
-      setTimeout(() => {
-        pianoKeys[keyObject.bindIndex].classList.remove(
-          `${keyObject.color}-active`
-        );
-      }, 200); // remove the class after 200ms
+    }
+  };
+
+  const handleKeyUp = (event) => {
+    const key = event.key.toLowerCase();
+    const keyObject = keys.find((k) => k.key === key);
+    if (keyObject && keyObject.audio) {
+      // check if the key is pressed
+      keyObject.audio.pause(); // pause the audio
+      keyObject.audio = null; // remove the Audio object from the key object
+      pianoKeys[keyObject.bindIndex].classList.remove(
+        `${keyObject.color}-active`
+      );
     }
   };
 
   onMount(() => {
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp); // listen for keyup events
   });
 
   onDestroy(() => {
     window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp); // remove the keyup listener
   });
 </script>
 
