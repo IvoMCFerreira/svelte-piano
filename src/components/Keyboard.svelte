@@ -60,7 +60,7 @@
   <header>
     <div class="top-elements">
       <h2>Virtual Piano</h2>
-      <VolumeSlider {volume} />
+      <VolumeSlider bind:volume />
       <CheckboxSlider checked />
     </div>
     <ul class="piano-keys">
