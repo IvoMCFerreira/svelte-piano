@@ -30,17 +30,22 @@
 
   const handleKeyDown = (event) => {
     const key = event.key.toLowerCase();
-    if (keys.find((k) => k.key === key)) {
+    const keyObject = keys.find((k) => k.key === key);
+    if (keyObject) {
       playTune(key);
+      pianoKeys[keyObject.bindIndex].classList.add(`${keyObject.color}-active`);
+      setTimeout(() => {
+        pianoKeys[keyObject.bindIndex].classList.remove(
+          `${keyObject.color}-active`
+        );
+      }, 200); // remove the class after 200ms
     }
   };
 
-  // Add the event listener when the component mounts
   onMount(() => {
     window.addEventListener("keydown", handleKeyDown);
   });
 
-  // Remove the event listener when the component unmounts
   onDestroy(() => {
     window.removeEventListener("keydown", handleKeyDown);
   });
@@ -200,5 +205,15 @@
     width: 100%;
     font-size: 1.13rem;
     text-align: center;
+  }
+
+  .piano-keys .white-active {
+    box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  }
+
+  .piano-keys .black-active {
+    box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, #000, #434343);
   }
 </style>
