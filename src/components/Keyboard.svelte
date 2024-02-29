@@ -50,7 +50,6 @@
     const keyObject = keys.find((k) => k.key === key);
     if (keyObject && keyObject.audio) {
       // check if the key is pressed
-      keyObject.audio.pause(); // pause the audio
       keyObject.audio = null; // remove the Audio object from the key object
       pianoKeys[keyObject.bindIndex].classList.remove(
         `${keyObject.color}-active`
@@ -100,7 +99,7 @@
 
 <style>
   .wrapper {
-    width: 780px;
+    width: 48.75rem;
     border-radius: 20px;
     padding: 35px 40px;
     background: #141414;
@@ -192,5 +191,19 @@
   .piano-keys .black-active {
     box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
     background: linear-gradient(to bottom, #000, #434343);
+  }
+
+  @media (max-width: 600px) {
+    .wrapper {
+      transform: rotate(90deg);
+      transform-origin: top left;
+      /* Adjust width and height after rotation */
+      width: 100vh; /* Use viewport height as width */
+      height: 48.75rem; /* Assuming you want to maintain the same height */
+      /* Adjust positioning if necessary */
+      position: relative;
+      top: 0; /* Reset top position if needed */
+      left: 0; /* Reset left position if needed */
+    }
   }
 </style>
