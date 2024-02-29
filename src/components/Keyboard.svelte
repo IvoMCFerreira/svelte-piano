@@ -192,18 +192,4 @@
     box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
     background: linear-gradient(to bottom, #000, #434343);
   }
-
-  @media (max-width: 600px) {
-    .wrapper {
-      transform: rotate(90deg);
-      transform-origin: top left;
-      /* Adjust width and height after rotation */
-      width: 100vh; /* Use viewport height as width */
-      height: 48.75rem; /* Assuming you want to maintain the same height */
-      /* Adjust positioning if necessary */
-      position: relative;
-      top: 0; /* Reset top position if needed */
-      left: 0; /* Reset left position if needed */
-    }
-  }
 </style>
